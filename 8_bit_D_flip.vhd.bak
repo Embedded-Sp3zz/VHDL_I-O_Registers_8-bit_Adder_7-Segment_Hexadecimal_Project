@@ -1,0 +1,31 @@
+--8-bit D Flip-Flop Register/Buffer--
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity 8_bit_D_flip is
+ 	Port(
+		Clk:	in std_logic;
+		D	: 	in std_logic_vector(0 to 7);
+		Q	: 	out STD_LOGIC_VECTOR(0 to 7);
+		);
+end 8_bit_D_flip;
+
+
+architecture struct of 8_bit_D_flop is
+ 
+	signal c: std_logic_vector(0 to 2);
+ 
+	component full_adder is
+		Port (
+			D, Clk : IN STD_LOGIC;
+			Q, Q_bar : OUT STD_LOGIC
+		);
+end component;
+ 
+ begin
+ FA1: full_adder port map(a(0), b(0), cin, s(0), c(0));
+ FA2: full_adder port map(a(1), b(1), c(0), s(1), c(1));
+ FA3: full_adder port map(a(2), b(2), c(1), s(2), c(2));
+ FA4: full_adder port map(a(3), b(3), c(2), s(3), cout);
+ 
+end struct; 
